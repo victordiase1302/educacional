@@ -1,0 +1,64 @@
+FROM python:3.11.4-slim-buster
+LABEL mantainer="contato@jonathacarlos.dev.br"
+USER root
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+ENV APP_HOME=/telbot
+ENV MPLCONFIGDIR=/telbot/matplotlib_cache
+ENV IMG_CACHE=/telbot/images
+
+RUN mkdir -p $APP_HOME
+
+WORKDIR $APP_HOME
+
+COPY ./djangoapp/telegram_bot $APP_HOME
+COPY ./djangoapp/requirements_bot.txt /telbot/requirements_bot.txt
+COPY ./docker/prod/scripts/start_telbot.sh /scripts/start_telbot.sh
+RUN chmod +x /scripts/start_telbot.sh
+
+RUN chown -R root:root $APP_HOME \
+    && chmod -R 777 $APP_HOME \
+    && chown -R root:root $MPLCONFIGDIR \
+    && chmod -R 777 $IMG_CACHE \
+    && chmod -R 777 $MPLCONFIGDIR \
+    && chown -R root:root $IMG_CACHE \
+    && apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libpq-dev \
+    libmagic1 \
+    gettext \
+    netcat \
+    gcc \
+    postgresql \
+    texlive-latex-base \
+    texlive-fonts-recommended \
+    texlive-latex-extra \
+    texlive-fonts-extra \
+    cm-super \
+    lmodern \
+    ghostscript \
+    dvipng \
+    && apt-get clean \
+    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN python -m venv /venv \
+    && /venv/bin/pip install --upgrade pip \
+    && /venv/bin/pip install setuptools wheel --upgrade \
+    && /venv/bin/pip install --no-cache-dir -r /telbot/requirements_bot.txt
+
+# Add non-privileged user
+# RUN adduser --disabled-password --no-create-home duser \
+#     && chown -R duser:duser $MPLCONFIGDIR \
+#     && chown -R duser:duser $IMG_CACHE \
+#     && chown -R duser:duser /venv \
+#     && chmod -R +x /scripts
+
+ENV PATH="/scripts:/venv/bin:$PATH"
+
+# USER duser
+
+EXPOSE 8005
+
+CMD ["start_telbot.sh"]

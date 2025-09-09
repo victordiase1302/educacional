@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Atividades Inclusivas – Landing Page</title>
+    <meta
+      name="description"
+      content="Landing page de Atividades Inclusivas com formulário, benefícios e apresentação da equipe."
+    />
+    <link rel="stylesheet" href="{% static 'iprof/css/styles2.css' %}" />
+  </head>
+
+  <body>
+    <div class="page-container">
+      <main class="content-wrapper">
+        <!-- Hero -->
+        <section class="hero-section" aria-labelledby="hero-title">
+          <div class="hero-content">
+            <div class="hero-text">
+              <img
+                class="logo"
+                src="{% static 'iprof/img/Logo.png' %}"
+                alt="Logotipo do projeto Atividades Inclusivas"
+                loading="lazy"
+                decoding="async"
+              />
+
+              <div class="hero-copy">
+                <h1 id="hero-title" class="hero-title">
+                  Acolha cada criança e potencialize seu aprendizado com atividades inclusivas prontas para usar.
+                </h1>
+                <p class="hero-description">
+                  Um guia prático, alinhado à BNCC, que economiza seu tempo de preparo e garante aulas mais organizadas, criativas e inclusivas para todas as crianças.
+                </p>
+              </div>
+
+              <form
+                class="form-container"
+                action="#"
+                method="POST"
+                aria-label="Formulário de inscrição Atividades Inclusivas"
+              >
+                <div class="form-group">
+                  <label for="nome" class="sr-only">Nome completo</label>
+                  <input
+                    id="nome"
+                    name="nome"
+                    type="text"
+                    class="form-input full-width"
+                    placeholder="Seu nome"
+                    autocomplete="name"
+                    required
+                  />
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="celular" class="sr-only">Número de celular</label>
+                    <input
+                      id="celular"
+                      name="celular"
+                      type="tel"
+                      inputmode="numeric"
+                      pattern="[0-9\s+\-()]*"
+                      class="form-input half-width"
+                      placeholder="Whatsapp"
+                      autocomplete="tel"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="email" class="sr-only">Endereço de email</label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      class="form-input half-width"
+                      placeholder="E-mail"
+                      autocomplete="email"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <button type="submit" class="cta-button">
+                  QUERO MEU GUIA AGORA!
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- O que você vai receber -->
+        <section
+          class="features-section"
+          aria-labelledby="features-title"
+        >
+          <div class="features-content">
+            <header class="section-header">
+              <h2 id="features-title" class="section-title">
+                <span class="title">O que você irá </span>
+                <span class="title-yellow">receber</span>
+              </h2>
+            </header>
+
+            <div class="features-grid">
+              <!-- Card 1 -->
+              <article class="feature-card">
+                <img src="{% static 'iprof/img/Rectangle 250.png' %}" alt="Mais de 20 atividades práticas e inclusivas" class="card-image" loading="lazy" decoding="async" />
+                <div class="card-content">
+                  <h3 class="card-title">Mais de 20 atividades práticas e inclusivas<br><br></h3>
+                  <p class="card-description">
+                    Atividades criativas para facilitar a adaptação e acolher todas as crianças, inclusive as neurodivergentes.
+                  </p>
+                </div>
+              </article>
+              
+              <!-- Card 2 -->
+              <article class="feature-card-2">
+                <img src="{% static 'iprof/img/Rectangle 250-1.png' %}" alt="Estratégias dinâmicas e adaptações práticas" class="card-image" loading="lazy" decoding="async" />
+                <div class="card-content">
+                  <h3 class="card-title">Estratégias dinâmicas e adaptações práticas<br><br></h3>
+                  <p class="card-description">
+                    Sugestões detalhadas para personalizar cada atividade, garantindo que todas as crianças participem.
+                  </p>
+                </div>
+              </article>
+              
+              <!-- Card 3 -->
+              <article class="feature-card">
+                <img src="{% static 'iprof/img/Rectangle 250-2.png' %}" alt="Planejamento para o início do ano letivo" class="card-image" loading="lazy" decoding="async" />
+                <div class="card-content">
+                  <h3 class="card-title">Planejamento para o início do ano letivo<br><br></h3>
+                  <p class="card-description">
+                    Atividades para reduzir a ansiedade e facilitar a adaptação desde o primeiro dia.
+                  </p>
+                </div>
+              </article>
+              
+              <!-- Card 4 -->
+              <article class="feature-card-2">
+                <img src="{% static 'iprof/img/Rectangle 250-3.png' %}" alt="Modelos completos com passo a passo" class="card-image" loading="lazy" decoding="async" />
+                <div class="card-content">
+                  <h3 class="card-title">Modelos completos com passo a passo<br><br></h3>
+                  <p class="card-description">
+                    As atividades vêm com lista de materiais, dinâmica e dicas de inclusão a partir da BNCC.
+                  </p>
+                </div>
+              </article>
+              
+              <!-- Card 5 -->
+              <article class="feature-card">
+                <img src="{% static 'iprof/img/Rectangle 250-4.png' %}" alt="Calendário pronto com vivências organizadas" class="card-image" loading="lazy" decoding="async" />
+                <div class="card-content">
+                  <h3 class="card-title">Calendário pronto com vivências organizadas<br><br></h3>
+                  <p class="card-description">
+                    Planejamento completo de 5 semanas com atividades diárias para otimizar seu tempo.
+                  </p>
+                </div>
+              </article>
+              
+              <!-- Card 6 -->
+              <article class="feature-card-2">
+                <img src="{% static 'iprof/img/Rectangle 250-5.png' %}" alt="Ideias extras para momentos especiais" class="card-image" loading="lazy" decoding="async" />
+                <div class="card-content">
+                  <h3 class="card-title">Ideias extras para momentos especiais<br><br></h3>
+                  <p class="card-description">
+                    Sugestões de contação de histórias, músicas e brincadeiras que desenvolvem habilidades socioemocionais.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- Quem Somos -->
+        <section class="about-section" aria-labelledby="about-title">
+          <div class="about-content">
+            <div class="about-text">
+              <h2 id="about-title" class="about-title">Quem Somos?</h2>
+              <div class="about-description">
+                <p>
+                  Nós somos Melina e Cláudia, duas amigas e  educadoras que compartilham um mesmo sonho:  transformar a educação em um espaço mais acolhedor,  inclusivo e significativo.<br><br>
+
+                  Com mais de 30 anos de experiência em sala de aula e formações  voltadas para o desenvolvimento infantil, percebemos que poderíamos impactar ainda mais professores e crianças, compartilhando práticas criativas, acessíveis e alinhadas às necessidades de cada criança.<br><br>
+                  
+                  Foi assim que nasceu a Inspirar Professores — um projeto  que carrega nossas vivências, aprendizados e, principalmente,  nosso desejo de apoiar educadores de todo o Brasil e mundo.. Acreditamos que cada criança merece ser respeitada em seu tempo, suas emoções e sua forma de aprender. 
+                   Por isso, produzimos conteúdos, materiais e formações  que unem afeto, intencionalidade pedagógica e estratégias  práticas para tornar a escola um espaço verdadeiramente inclusivo.<br><br>
+                  
+                  Mais do que um projeto, a Inspirar Professores é a nossa  missão de vida: inspirar professores para que cada criança brilhe do seu jeito. Cada criança é única e  merece ser respeitada.<br><br>
+                </p>
+              </div>
+            </div>
+            <div class="about-img">
+              <img
+                src="{% static 'iprof/img/somos.png' %}"
+                alt="Equipe do projeto Atividades Inclusivas"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,102 @@
+{% load static %}
+<div class="categorie-section">
+  <div
+    class="title-bar"
+    style="border-bottom: 1px solid rgba(0, 0, 0, 0.125); padding: 0.5rem 1rem;"
+  >
+    <h5 class="dz-title">Destaques da Semana</h5>
+  </div>
+  <div class="row g-3">
+    {% for fav in favs %}
+      {% if fav.site_setup_id == site_setup.pk %}
+        <div class="col">
+          <div class="card card-bx card-content bg-light mb-0">
+            <div class="card-body media-ds">
+              <div
+                hx-post="{% url 'counters:service' %}"
+                hx-swap='none'
+                hx-vals='{"service": "Acessando Plataforma Favorita - {{fav.name}}"}'
+              >
+                <a
+                  href="{% url 'platforms:platform' fav.slug %}"
+                >
+                  <img
+                    {% if fav.logo %}
+                      src="{{fav.logo.url}}"
+                    {% else %}
+                      src="{% static 'development/images/place_holder.jpg' %}"
+                    {% endif %}
+                    class="img-fluid"
+                    alt="{{fav.name}}"
+                  >
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% if forloop.counter|divisibleby:"2" == "0" and not forloop.last %}
+          </div>
+          <h1></h1>
+          <div class="row g-3">
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    {% if remaining_favs != 2 and remaining_favs != 0 %}
+        {% for _ in "x"|rjust:remaining_favs %}
+          {% include 'development/components/heart_for_payer_platform.html' %}
+        {% endfor %}
+    {% elif remaining_favs == 0 and not favs %}
+        {% for _ in "x"|rjust:2 %}
+          {% include 'development/components/heart_for_payer_platform.html' %}
+        {% endfor %}
+    {% endif %}
+  </div>
+</div>
+{% comment %} {% load static %}
+<div class="categorie-section">
+  <div
+    class="title-bar"
+    style="border-bottom: 1px solid rgba(0, 0, 0, 0.125); padding: 0.5rem 1rem;"
+  >
+    <h5 class="dz-title">Destaques da Semana</h5>
+  </div>
+  <ul class="d-flex align-items-center">
+    {% for fav in favs %}
+      {% if fav.site_setup_id == site_setup.pk %}
+        <li
+          hx-post="{% url 'counters:service' %}"
+          hx-swap='none'
+          hx-vals='{"service": "Acessando Plataforma Favorita - {{fav.name}}"}'
+        >
+          <a
+            href="{% url 'platforms:platform' fav.slug %}"
+            class="btn"
+          >
+            <img
+              {% if fav.logo %}
+                src="{{fav.logo.url}}"
+              {% else %}
+                src="{% static 'development/images/place_holder.jpg' %}"
+              {% endif %}
+                alt="{{fav.name}}"
+            >
+          </a>
+        </li>
+        {% if forloop.counter|divisibleby:"2" == "0" and not forloop.last %}
+          </ul>
+          <h1></h1>
+          <ul class="d-flex align-items-center">
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    {% if remaining_favs != 2 and remaining_favs != 0 %}
+        {% for _ in "x"|rjust:remaining_favs %}
+          {% include 'development/components/heart_for_fav_platform.html' %}
+        {% endfor %}
+    {% elif remaining_favs == 0 and not favs %}
+        {% for _ in "x"|rjust:2 %}
+          {% include 'development/components/heart_for_fav_platform.html' %}
+        {% endfor %}
+    {% endif %}
+  </ul>
+</div> {% endcomment %}

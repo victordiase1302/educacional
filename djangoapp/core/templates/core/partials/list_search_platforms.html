@@ -1,0 +1,75 @@
+{% load static %}
+<div class="serach-area" id='search-for-input'>
+  <form class="m-b30">
+    <div class="input-group">
+      <span class="input-group-text">
+        <a href="#" class="search-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M20.5605 18.4395L16.7528 14.6318C17.5395 13.446 18 12.0262 18 10.5C18 6.3645 14.6355 3 10.5 3C6.3645 3 3 6.3645 3 10.5C3 14.6355 6.3645 18 10.5 18C12.0262 18 13.446 17.5395 14.6318 16.7528L18.4395 20.5605C19.0245 21.1462 19.9755 21.1462 20.5605 20.5605C21.1462 19.9748 21.1462 19.0252 20.5605 18.4395ZM5.25 10.5C5.25 7.605 7.605 5.25 10.5 5.25C13.395 5.25 15.75 7.605 15.75 10.5C15.75 13.395 13.395 15.75 10.5 15.75C7.605 15.75 5.25 13.395 5.25 10.5Z"
+              fill="#B9B9B9" />
+          </svg>
+        </a>
+      </span>
+      <input
+        type="text"
+        placeholder="Procure uma plataforma..."
+        class="form-control ps-0 bs-0"
+        name='q'
+        hx-target="#search-for-input"
+        hx-trigger="keyup changed delay:500ms, click[enterKey]"
+        hx-get="{% url 'platforms:search-platform' %}"
+        hx-indicator="#preloader"
+        hx-swap="innerHTML"
+      >
+    </div>
+  </form>
+  {% include 'core/components/banner300x250.html' %}
+  <div class='search-main' id="search-platforms">
+    <div class="filter-area">
+      <div class="col-12">
+        <h5>
+          {% if search_term %}
+            {{search_term}}
+          {% else %}
+            Todas as Plataformas
+          {% endif %}
+        </h5>
+        <div
+          class="title-bar"
+          style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);"
+        ></div>
+        <span>{{count}} Plataforma{{count|pluralize:'s'}} encontrada{{count|pluralize:'s'}}</span>
+      </div>
+    </div>
+    <div class="list item-list recent-jobs-list">
+      <ul>
+        {% for obj in obj_list %}
+          {% if obj.site_setup.pk == site_setup.pk %}
+            {% include 'core/partials/platform_item.html' %}
+            {% comment %} {% if forloop.counter|divisibleby:"2" %}
+              
+            {% endif %} {% endcomment %}
+          {% endif %}
+          {% comment %}
+          {% if forloop.counter == 1 and forloop.last %}<div style='height: 38vh;'></div>{% endif %}
+          {% if forloop.counter == 2 and forloop.last %}<div style='height: 23vh;'></div>{% endif %}
+          {% if forloop.counter == 3 and forloop.last %}<div style='height: 17vh;'></div>{% endif %}
+          {% if forloop.counter|divisibleby:"2" %}
+            <div style="display: flex; justify-content: center;">
+                <img
+                  src="{% static 'core/images/ad-1.png' %}"
+                  class="m-b65"
+                  alt="Images"
+                  style="width: 300px; height: 50px;"
+                >
+            </div>
+          {% endif %}
+          {% empty %}
+          <div style='height: 55vh;'></div>
+          {% endcomment %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>

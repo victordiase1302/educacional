@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block no_register %}{% endblock no_register %}
+{% block content %}
+  {% include 'core/partials/header_title.html' %}
+  <div class="page-content">
+    <div class="container fb">
+      <div class="row">
+        {% for section in sections %}
+          {% include 'core/partials/section_faq.html' %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock content %}

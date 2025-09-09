@@ -1,0 +1,111 @@
+<div id="main">
+    <div class="page-content">
+
+        <!-- Banner -->
+        <div class="banner-wrapper shape-1">
+            <div class="welcome-area">
+                <div class="welcome-logo">
+                    <div class="get-started">
+                        <h1 class="dz-title text-white">Daniel Fortune</h1>
+                        <p style="color: rgba(255, 255, 255, 0.7);">MAIOR EXPERT em jogos de slot!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="container inner-wrapper">
+                <h2 class="dz-title">Verificar código</h2>
+                <p class="mb-0">Por favor entre com o código</p>
+            </div>
+        </div>
+        <!-- Banner End -->
+        <div class="container">
+            {% if message %}
+                {% include 'development/components/toast.html' %}
+            {% endif %}
+            <div class="account-area">
+                <form
+                    hx-post="{% url 'users:verify-otp' %}"
+                    hx-swap="outerHTML"
+                    hx-target="#main"
+                    hx-indicator="#preloader"
+                >
+                    <div method="get" id="otp" class="digit-group" data-group-name="digits" data-autosubmit="false" autocomplete="off">
+                        <input
+                            class="form-control"
+                            type="text"
+                            id="digit-1"
+                            name="digit-1"
+                            placeholder="-"
+                            data-next="digit-2"
+                        />
+                        <input
+                            class="form-control"
+                            type="text"
+                            id="digit-2"
+                            name="digit-2"
+                            placeholder="-"
+                            data-next="digit-3"
+                            data-previous="digit-1"
+                        />
+                        <input
+                            class="form-control"
+                            type="text"
+                            id="digit-3"
+                            name="digit-3"
+                            placeholder="-"
+                            data-next="digit-4"
+                            data-previous="digit-2"
+                        />
+                        <input
+                            class="form-control"
+                            type="text"
+                            id="digit-4"
+                            name="digit-4"
+                            placeholder="-"
+                            data-next="digit-5"
+                            data-previous="digit-3"
+                        />
+                        <input
+                            class="form-control"
+                            type="text"
+                            id="digit-5"
+                            name="digit-5"
+                            placeholder="-"
+                            data-next="digit-6"
+                            data-previous="digit-4"
+                        />
+                        <input
+                            class="form-control"
+                            type="text"
+                            id="digit-6"
+                            name="digit-6"
+                            placeholder="-"
+                            data-previous="digit-5"
+                        />
+                    </div>
+                    <input type="hidden" name="cell_phone" value={{cell_phone}}>
+                    <div class="input-group">
+                        <button
+                            type="submit"
+                            class="btn mt-3 btn-primary w-100 btn-rounded"
+                        >
+                            Verificar e Continuar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer class="footer fixed">
+        <div class="container">
+            <a
+                href="#"
+                hx-get="{% url 'users:register'%}"
+                hx-swap="outerHTML"
+                hx-target="#main"
+                class="btn btn-primary light btn-rounded text-primary d-block"
+            >
+                Criar Conta
+            </a>
+        </div>
+    </footer>
+</div>

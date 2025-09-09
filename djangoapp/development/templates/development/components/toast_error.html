@@ -1,0 +1,10 @@
+{% load static %}
+{% if form.errors.items %}
+  <blockquote class="quote-danger">
+    {% for field, errors in form.errors.items %}
+      {% for error in errors %}
+          <p class="error-message small text-danger"><b>{{ error }}</b></p>
+      {% endfor %}
+    {% endfor %}
+  </blockquote>
+{% endif %}

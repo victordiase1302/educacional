@@ -1,0 +1,13 @@
+# python-decouple==3.8
+# psycopg2-binary>=2.9.6,<2.10
+# django-extensions==3.2.1,<3.3
+# six==1.16.0,<1.17
+# boto3==1.28.15,<2.29
+Werkzeug==3.0.0,<3.1
+pyOpenSSL==23.2.0,<23.3
+openai==1.30.1,<1.31
+gevent==23.9.1,<24.0
+python-telegram-bot
+watchdog==4.0.0,<4.1
+matplotlib==3.8.4,<3.9
+python-decouple==3.8

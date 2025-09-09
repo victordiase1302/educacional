@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-BR" data-bs-theme="dark">
+  <head>
+    {% include 'core/partials/_head_link_tree.html' %}
+    {% block link_tree %}
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="{% static 'core/css/styles_link_tree.css' %}"
+      />
+    {% endblock link_tree %}
+  </head>
+
+  <body class="bck-link-tree" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+      <div class="content">
+        <div class="profile">
+          <img
+            src="{% static "core/images/about.png" %}"
+            alt="Victor Rangel"
+            width="260" />
+          <h1>@danielfortune777</h1>
+          <p>Daniel Oliveira</p>
+        </div>
+        <div class="row justify-content-center form-cta">
+          <div class="d-grid col-12 gap-2">
+            <p style='text-align: justify; margin-top:7px; text-indent: 1.5em;'>
+              O mundo dos jogos dos slots está coberto de trevas e você precisa da Luz!
+            </p>
+            <p style='text-align: justify; text-indent: 1.5em;'>
+              Venha conhecer a Verdade sobre o mundo dos slots, sem hipocrisias e rabo preso!
+            </p>
+            <p style='text-align: justify; text-indent: 1.5em;'>
+              Tudo isso 100% gratuito com o único objetivo de o ajudar a proteger seu bolso e sua saúde do vício e dos golpes!
+            </p>
+            <p style='text-align: justify; text-indent: 1.5em;'>
+              Quer se libertar das trevas e entender esses jogos de verdade?
+            </p>
+            <p style='text-align: center; text-indent: 1.5em;'>
+              <strong>
+                Segue as minhas redes sociais que eu te mostro como conseguir isso sem cobrar nada!
+              </strong>
+            </p>
+          </div>
+          <div class="d-grid col-md-6 col-sm-12">
+            <a
+              href="https://instagram.com/danielfortune777/"
+              target="_blank"
+              class="btn btn-outline-light btn-lg bta-cta mb-3"
+            >
+              <i class="bi bi-instagram"></i>
+              Instagram
+            </a>
+            <a
+              href="https://youtube.com/@daniel_fortune/?sub_confirmation=1"
+              target="_blank"
+              class="btn btn-outline-light btn-lg bta-cta"
+            >
+              <i class="bi bi-youtube"></i>
+              YouTube
+            </a>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <p>Todos os direitos reservados</p>
+        <p>
+          <img
+            src="{% static "core/images/fav-emoji.png" %}"
+            alt="Victor Rangel"
+            width="28" />
+          DanielFortune
+        </p>
+      </footer>
+    {% include 'core/partials/_footer_link_tree.html' %}
+    {% block extra_js %}{% endblock extra_js %}
+  </body>
+</html>

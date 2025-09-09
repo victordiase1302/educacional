@@ -1,0 +1,99 @@
+<div id="main">
+  <div class="page-content">
+    <div class="banner-wrapper shape-1">
+      {% include 'development/partials/header_welcome.html' %}
+      <div class="container inner-wrapper">
+        <h2 class="dz-title">Crie uma Conta</h2>
+        <p class="mb-0">Por favor preeencha os campos abaixo</p>
+      </div>
+    </div>
+
+    <div class="container">
+      {% include 'development/components/toast.html' %}
+      <div class="account-area">
+        <form
+          hx-post="{% url 'users:register' %}"
+          hx-swap="outerHTML"
+          hx-target="#main"
+          hx-indicator="#preloader"
+        >
+          <div class="input-group">
+            <input
+              type="text"
+              placeholder="Nome"
+              class="form-control"
+              name='first_name'
+            />
+          </div>
+          <div class="input-group">
+            <input
+              type="email"
+              placeholder="Email"
+              class="form-control"
+              name='email'
+            />
+          </div>
+          <div class="input-group">
+            <input
+              id="id_cell_phone"
+              type="phone"
+              placeholder="Celular"
+              class="form-control"
+              name="cell_phone"
+              data-inputmask='"mask": "(99) 99999-9999"'
+              data-mask
+            />
+          </div>
+          <div class="input-group">
+            <input
+              type="password"
+              placeholder="Senha"
+              id="dz-password"
+              class="form-control be-0"
+              name='password'
+            />
+            <span class="input-group-text show-pass">
+              <i class="fa fa-eye-slash"></i>
+              <i class="fa fa-eye"></i>
+            </span>
+          </div>
+
+          <div class="input-group">
+            <button type="submit" class="btn mt-2 btn-primary w-100 btn-rounded"
+              >Criar Conta
+            </button>
+          </div>
+          <p class="text-center">
+            Ao pressionar “Criar Conta” você aceita nossos
+            <a href="#" class="text-primary font-w700"
+              >termos</a
+            >
+            e
+            <a href="#" class="text-primary font-w700"
+              >condições</a
+            >
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer fixed">
+    <div class="container">
+      <a
+        href="#"
+        hx-get="{% url 'users:login'%}"
+        hx-swap='outerHTML'
+        hx-target='#main'
+        class="btn btn-primary light btn-rounded text-primary d-block"
+        >Entrar com senha</a
+      >
+    </div>
+  </footer>
+</div>
+<script>
+	$(function(){
+		$('[data-mask]').inputmask()
+	})
+</script>
+

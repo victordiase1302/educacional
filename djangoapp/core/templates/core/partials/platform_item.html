@@ -1,0 +1,74 @@
+{% load static %}
+<li
+  class="{% if forloop.last %}mb-5{% endif %}"
+>
+  <div
+    class="item-content watermark-card"
+    role='button'
+    hx-post="{% url 'counters:service' %}"
+    hx-swap='none'
+    hx-vals='{"service": "Acessando Plataforma - {{obj.name}}"}'
+    hx-on:click="window.location.href='{{obj.get_detail_url}}'"
+  >
+    <a
+      href="{{obj.get_detail_url}}"
+      class="item-media"
+    >
+      <div class="media media-70">
+        <img
+          {% if obj.logo %}
+            src="{{obj.logo.url}}"
+          {% else %}
+            src="{% static 'core/images/place_holder.jpg' %}"
+          {% endif %}
+          alt="{{obj.name}}"
+        >
+      </div>
+    </a>
+    <div class="item-inner">
+      <div class="item-title-row">
+        <div class="item-subtitle">{{obj.family_name|default:"&nbsp;&nbsp;"}}</div>
+        <h6 class="item-title text-uppercase">
+          <a href="{{obj.get_detail_url}}">{{obj.name}}</a>
+        </h6>
+        <span
+          class="badge text-uppercase"
+          style="background: {{obj.status.cor_hex}};"
+        >
+          {{obj.status.name}}
+        </span>
+      </div>
+      {% if page_title %}
+        {% if obj.min_deposit %}
+          <div class="d-flex align-items-center mb-2" style="padding-left: 5px;">
+            <span class="text-primary">
+              <i class="fa-solid fa-dollar fa-xl"></i>
+            </span>
+            <div class="item-price" style="padding-left: 5px;">
+              {{obj.min_deposit}}
+            </div>
+          </div>
+        {% endif %}
+        {% if obj.min_cash %}
+          <div class="d-flex align-items-center mb-2">
+            <span class="text-primary">
+              <i class="fa-solid fa-coins fa-xl"></i>
+            </span>
+            <div class="item-price" style="padding-left: 2px;">
+              {{obj.min_cash}}
+            </div>
+          </div>
+        {% endif %}
+        {% if obj.bonus %}
+          <div class="d-flex align-items-center mb-2">
+            <span class="text-primary">
+              <i class="fa-solid fa-hand-holding-dollar fa-xl"></i>
+            </span>
+            <div class="item-price">{{obj.bonus}}</div>
+          </div>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+  <div class="sortable-handler"></div>
+</li>

@@ -1,0 +1,65 @@
+{% extends 'development/base.html' %}
+{% load static %}
+{% block no_register %}
+{% endblock no_register %}
+{% block content %}
+<div id="main">
+    <div class="page-content" style="min-height: 700px;">
+      <div class="banner-wrapper shape-1">
+        {% include 'development/partials/header_welcome.html' %}
+        <div class="container inner-wrapper">
+          <h2 class="dz-title">Entrar</h2>
+          <p class="mb-0">Área VIP do Portal (em Breve)</p>
+        </div>
+      </div>
+
+      <div class="container">
+        {% include 'development/components/toast.html' %}
+        <div class="account-area">
+          <p></p>
+          <form id='form-login'>
+            <div class="input-group">
+              <div class="form-check check-box">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="checkAcess"
+                  _="on click toggle .btn-check .disabled on #portalAcess"
+                >
+                <label class="form-check-label" for="checkAcess">Eu confirmo ter mais de 18 anos</label>
+                <i class="check-1 fa fa-square"></i>
+                <i class="check-2 fa fa-check-square"></i>
+              </div>
+            </div>
+            <div
+              class="input-group"
+              hx-post="{% url 'counters:service' %}"
+              hx-swap='none'
+              hx-vals='{"service": "Acessando sem login"}'
+            >
+              <a
+                id="portalAcess"
+                href="{% url 'core:app' %}"
+                class="btn mt-2 btn-primary w-100 btn-rounded btn-check disabled"
+              >
+                ENTRAR NO PORTAL
+              </a>
+            </div>
+          </form>
+          <p></p>
+          <p></p>
+        </div>
+      </div>
+    </div>
+    <footer class="footer fixed">
+      <div class="container">
+
+      </div>
+    </footer>
+</div>
+
+{% endblock content %}
+{% block footer_no_register %}
+{% endblock footer_no_register %}
+
+

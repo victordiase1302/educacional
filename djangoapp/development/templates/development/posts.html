@@ -1,0 +1,31 @@
+{% extends 'development/base.html' %}
+{% load static %}
+{% block no_register %}{% endblock no_register %}
+{% block content %}
+    {% include 'core/partials/header_title.html' %}
+    <div class="page-content">
+        <div class="container fb">
+          <div class="row">
+            <div
+              class="title-bar"
+              style="border-bottom: 1px solid rgba(0, 0, 0, 0.125); padding: 0.5rem 1rem;"
+            >
+              <h5 class="dz-title">Posts Recentes</h5>                
+            </div>
+            <div class="list item-list recent-jobs-list">
+                <ul>
+                  {% for obj in posts %}
+                    {% if obj.site_setup.pk == site_setup.pk %}
+                      {% include 'development/partials/post_item.html' %}
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+            </div>
+            {% comment %} {% for section in sections %}
+              {% include 'core/partials/section_faq.html' %}
+            {% endfor %} {% endcomment %}
+          </div>
+        </div>
+      </div>
+
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% load static %}
+<div class="banner-wrapper author-notification">
+  <div class="container inner-wrapper">
+    <div class="dz-info">
+      <span>Bem vindo</span>
+      <h2 class="name mb-0">DanielFortune - Portal</h2>
+    </div>
+    {% if user.is_authenticated %}
+      <div class="dz-media media-45 rounded-circle">
+        <a
+          href="{% url 'core:app' %}"
+        >
+          <img
+            src="{% static 'development/images/author/pic1.png' %}"
+            class="rounded-circle"
+            alt="author-image"
+          >
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>

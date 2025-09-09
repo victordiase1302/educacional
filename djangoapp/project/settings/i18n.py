@@ -1,0 +1,17 @@
+LANGUAGE_CODE = "pt-br"
+
+TIME_ZONE = "America/Sao_Paulo"
+
+USE_I18N = True
+
+USE_TZ = True
+
+DATE_FORMAT = "d/m/Y"
+
+DATETIME_FORMAT = "d, M, Y - P"
+
+DATETIME_INPUT_FORMATS = "d/m/Y H:i"
+
+TIME_FORMAT = "G:i"
+
+USE_THOUSAND_SEPARATOR = False

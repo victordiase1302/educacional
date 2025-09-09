@@ -1,0 +1,125 @@
+{% load static %}
+<section class="news mx-auto px-0 position-relative m-t30">
+    <div
+        class="title-bar"
+        style="border-bottom: 1px solid rgba(0, 0, 0, 0.125); padding: 0.5rem 1rem;"
+    >
+        <h5 class="dz-title">Curso do Zero a Mestre dos Slots</h5>
+        {% comment %} <a class="btn btn-sm text-primary" href="#">Mais</a> {% endcomment %}
+    </div>
+    <div class="swiper-btn-center-lr">
+        <div class="swiper-container tag-group mt-4 dz-swiper recomand-swiper">
+            <div class="swiper-wrapper">
+                {% for video in site_setup.section_videos %}
+                    {% if video.streaming == "EX" %}
+                        <div class="news-card swiper-slide {% if not forloop.last %}me-3 {% else %}card-last{% endif %}">
+                            <div
+                                class="video-card"
+                                hx-post="{% url 'counters:service' %}"
+                                hx-swap='none'
+                                hx-vals='{"service": "Acessando video - {{video.title}}"}'
+                            >
+                                <a href="{{video.link}}" target="_blank">
+                                    <img
+                                        {% if video.thumbnail %}
+                                            src="{{video.thumbnail.url}}"
+                                        {% else %}
+                                            src="{% static 'development/images/place_holder.jpg' %}"
+                                        {% endif %}
+                                        title="{{video.title}}"
+                                        style="width: 269px; height:155px;"
+                                        id="playVideo"
+                                    />
+                                </a>
+                            </div>
+                            <div class="content px-3 pb-3">
+                                <h6 class="mt-3 text-center fw-normal item-subtitle">
+                                {{video.title}}
+                                {% if video.icons.icon %}
+                                    <img
+                                        src="{{video.icons.icon.url}}"
+                                        style="width: 25px;"
+                                    >
+                                {% endif %}
+                                </h6>
+                            </div>
+                        </div>
+                    {% elif video.thumbnail %}
+                        <div class="news-card swiper-slide {% if not forloop.last %}me-3 {% else %}card-last{% endif %}">
+                            <div
+                                class="video-card"
+                                hx-post="{% url 'counters:service' %}"
+                                hx-swap='none'
+                                hx-vals='{"service": "Acessando video - {{video.title}}"}'
+                            />
+                                <a
+                                    href="#"
+                                    hx-get="{% url 'videos:play' %}"
+                                    hx-swap="outerHTML"
+                                    hx-target="this"
+                                    hx-vals='{"video_link": "{{video.get_streaming_url}}", "video_title": "{{video.title}}"}'
+                                >
+                                    <img
+                                        {% if video.thumbnail %}
+                                            src="{{video.thumbnail.url}}"
+                                        {% else %}
+                                            src="{% static 'development/images/place_holder.jpg' %}"
+                                        {% endif %}
+                                        title="{{video.title}}"
+                                        style="width: 269px; height:155px;"
+                                        id="playVideo"
+                                    />
+                                </a>
+                            </div>
+                            <div class="content px-3 pb-3">
+                                <h6 class="mt-3 text-center fw-normal item-subtitle">
+                                {{video.title}}
+                                {% if video.icons.icon %}
+                                    <img
+                                        src="{{video.icons.icon.url}}"
+                                        style="width: 25px;"
+                                    >
+                                {% endif %}
+                                </h6>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div
+                            class="news-card swiper-slide {% if not forloop.last %}me-3 {% else %}card-last{% endif %}">
+                            <div
+                                class="video-card"
+                                hx-post="{% url 'counters:service' %}"
+                                hx-swap='none'
+                                hx-vals='{"service": "Acessando video - {{video.title}}"}'
+                            />
+                                <iframe
+                                    width="269"
+                                    src="{{video.get_streaming_url}}"
+                                    title="{{video.title}}"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen="allowfullscreen"
+                                    id="playVideo"
+                                ></iframe>
+                            </div>
+                            <div class="content px-3 pb-3">
+                                <h6
+                                    class="mt-3 text-center fw-normal item-subtitle"
+
+                                >
+                                {{video.title}}
+                                {% if video.icons.icon %}
+                                    <img
+                                        src="{{video.icons.icon.url}}"
+                                        style="width: 25px;"
+                                    >
+                                {% endif %}
+                                </h6>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,10 @@
+{% extends 'development/base.html' %}
+{% load static %}
+{% block no_register %}
+    {% include 'development/partials/banner.html' %}
+{% endblock no_register %}
+{% block content %}
+    {% include 'development/partials/content.html' %}
+{% endblock content %}
+{% block msg_install %}{% endblock msg_install %}
+

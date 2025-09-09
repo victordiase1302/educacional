@@ -1,0 +1,31 @@
+{% if form.errors.items %}
+<div class="toast style-1 fade toast-danger mb-2 show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3982" data-bs-autohide="false">
+  <div class="toast-body">
+    <div class="toast-content ms-3 me-2">
+      {% for field, errors in form.errors.items %}
+        {% for error in errors %}
+            <strong>{{ error }}</strong><br/>
+        {% endfor %}
+      {% endfor %}
+    </div>
+    <button class="btn btn-close position-absolute p-1" type="button" data-bs-dismiss="toast" aria-label="Close"> </button>
+  </div>
+</div>
+{% elif message %}
+<div class="toast style-1 fade toast-{{type}} mb-2 show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3982" data-bs-autohide="false">
+  <div class="toast-body">
+      <div class="toast-content ms-3 me-2">
+          <strong>{{message}}</strong>
+      </div>
+      <button class="btn btn-close position-absolute p-1" type="button" data-bs-dismiss="toast" aria-label="Close"> </button>
+  </div>
+</div>
+{% endif %}
+
+<script>
+  window.setTimeout(function() {
+    $(".toast").fadeTo(500, 0).slideUp(500, function(){
+      $(this).remove();
+    });
+  }, 10000);
+</script>

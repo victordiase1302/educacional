@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-BR">
+
+<head>
+  {% include 'fortune/partials/_head.html' %}
+</head>
+
+<body class="bg-white">
+  <div class="page-wraper">
+    <div id="preloader">
+      <div class="spinner"></div>
+    </div>
+    {% include 'fortune/partials/header_notification.html' %}
+    {% include 'fortune/partials/content_notification.html' %}
+    {% include 'fortune/partials/sidebar.html' %}
+    {% include 'fortune/partials/menu_bar.html' %}
+    {% include 'fortune/partials/theme_color.html' %}
+  </div>
+  {% include 'fortune/partials/_js_footer.html' %}
+  {% block other_js %}
+  <script>
+    $(".notification-content .notification").mouseenter(function () {
+      $(".notification-content .notification").removeClass("active");
+      $(this).addClass("active");
+    })
+  </script>
+  {% endblock other_js %}
+</body>
+
+</html>

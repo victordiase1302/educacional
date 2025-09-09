@@ -1,0 +1,75 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block no_register %}{% endblock no_register %}
+{% block content %}
+	{% include 'core/partials/header_title.html' %}
+	<div class="watermark">
+		<div class="page-content bottom-content">
+			<div class="content-body">
+				<div class="container">
+					<div class="border-bottom">
+						<div class="d-flex justify-content-between align-items-center">
+							<div>
+								<h5 class="title">{{ obj.title }}</h5>
+								<span class="d-block mb-2">
+									<div class="flex-1">
+										<p>{{obj.sub_title}}</p>
+									</div>
+								</span>
+							</div>
+							<div class="ms-3">
+								<div class="media media-100">
+									{% if obj.thumbnail %}
+										<img src="{{obj.thumbnail.url}}" alt="{{obj.title}}">
+									{% else %}
+										<img src="{% static 'core/images/place_holder.jpg' %}" alt="{{obj.name}}">
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+					{% include 'core/components/banner300x250.html' %}
+					<div class="mt-4 mb-2">						
+						<p class="para-title">
+							{{obj.post|safe}}
+						</p>
+						{% include 'core/components/banner300x50.html' %}						
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="footer fixed bg-white">
+			<div class="container">
+				<div class="footer-btn d-flex align-items-center">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	{% if is_count %}
+		<div 
+			class='sendCountPlatform' 
+			hx-post="{% url 'core:count'%}" 
+			hx-vars='{"isPWA": isPWA, "isMobile": isMobile, "isIphone": isIphone, "referer": "{{referer}}"}'  
+			hx-trigger="load"
+		>
+		</div>
+	{% endif %}
+{% endblock content %}
+{% block footer_no_register %}{% endblock footer_no_register %}
+
+{% block config_script %}
+	<script>
+		$(function () {
+			$('[data-toggle="popover"]').popover()
+		})
+		
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip()
+		})
+	</script>
+	{% if is_count %}
+		<script src="{% static 'core/js/installApp.js' %}" defer></script>		
+	{% endif %}
+{% endblock config_script %}

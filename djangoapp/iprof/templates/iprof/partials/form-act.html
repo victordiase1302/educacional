@@ -1,0 +1,46 @@
+<form
+  class="row justify-content-start"
+  hx-post="{% url 'ecr:create' %}"
+  hx-swap='outerHTML'
+  hx-target='#main-content'
+>
+  <div class="col-12">
+    <label for="input-act" class="col-form-label col-form-label-lg">
+      Digite seu e-mail para receber o e-book:
+    </label>
+  </div>
+  <div class='col-md-8 col-sm-12'>
+    <input
+      type="email"
+      name='email'
+      class="form-control form-control-lg inp-acess"
+      id="input-act"
+      placeholder="Digite seu e-mail aqui"
+      required
+    >
+  </div>
+  <div class="col-md-8 col-sm-12">
+    <button
+      type="submit"
+      class="d-block mt-2 btn btn-block btn-lg btn-acess text-uppercase"
+      style="width: 100%!important;"
+    >
+    Quero impulsionar a minha carreira
+    </button>
+  </div>
+  <div class="col-12">
+    <p class="cta-text-free my-1">
+      100% gratuito | Disponivel por tempo limitado
+    </p>
+    <p class="cta-text-free my-1">
+      Não utilizamos suas informações de contato para enviar qualquer tipo de SPAM.
+      Os dados coletados são tratados nos termos da LGPD e você pode se descadastrar da lista de contatos a qualquer momento. Para mais informações acesse nossa
+      <a
+        href="{% url "ecr:privacy_policy" %}"
+        target="_blank"
+      >
+        <u>Política de Privacidade</u>.
+      </a>
+    </p>
+  </div>
+</form>

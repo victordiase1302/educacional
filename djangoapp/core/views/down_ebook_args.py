@@ -1,0 +1,36 @@
+import boto3
+from core.models import ArquivoS3, EbookDownload
+from django.conf import settings
+from django.http import StreamingHttpResponse
+from django.shortcuts import get_object_or_404
+
+
+def download_by_slug(request, *args, **kwargs):
+    slug = kwargs.get("slug")
+    arquivo = get_object_or_404(ArquivoS3, slug=slug)
+    file_key = arquivo.chave_s3
+    s3_client = boto3.client(
+        "s3",
+        aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+        aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
+        region_name=settings.AWS_REGION_NAME,
+    )
+
+    # Pega o arquivo do S3
+    file_obj = s3_client.get_object(
+        Bucket="econometriafacil",
+        Key=file_key,
+    )
+
+    EbookDownload.objects.create(
+        title=file_key,
+        ip_address=request.META.get("REMOTE_ADDR"),
+        user_agent=request.META.get("HTTP_USER_AGENT"),
+    )
+
+    # Retorna como resposta de streaming para o download
+    response = StreamingHttpResponse(file_obj["Body"].iter_chunks())
+    response["Content-Type"] = "application/pdf"
+    response["Content-Disposition"] = f'attachment; filename={file_key.split("/")[-1]}'
+
+    return response

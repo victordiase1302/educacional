@@ -1,0 +1,48 @@
+<body style="background-color: #d3d3d3;">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto:400')
+    </style>
+    <br/><br/>
+    <center>
+        <div style='background-color: #fff; width: 70%; height: 600px; border-radius: 5px; margin-top: 50px; font-family: Roboto;'>
+            <br/><br/>
+            <p style='font-size: 22px;'>Olá, <a style='color: #0d6efd;'>{{ name }} !</a> </p>            
+            <hr style='#d6efd; width: 80%;' />
+            <br/><br/>
+            <p style='font-size: 15px;'>Parabéns novamente por dar o primeiro passo rumo às suas conquistas!</p>
+            <p style='font-size: 15px;'>E como prometido, estou enviando o link para você baixar o seu e-book exclusivo: "Não se perca na Econometria".</p>
+            <p style='font-size: 15px;'>Este material vai ser seu guia pelos principais modelos da econometria,</p>
+            <p style='font-size: 15px;'>te apresentando como cada modelo funciona, para que servem e em quais situações aplicar.</p>
+            <p style='font-size: 15px;'>Ahh, e não se preocupe, o link é totalmente seguro!</p>
+            {% if not role %}
+                <p style='font-size: 15px;'>Clique no link abaixo para iniciar o download:</p>
+            {% endif %}
+            <p style='font-size: 15px;'>
+                <a 
+                    href="{{ url }}" 
+                    target="_blank"
+                    style="
+                        color: #fff; 
+                        background-color: #0d6efd; 
+                        width: 180px; 
+                        height: 40px; 
+                        border: none; 
+                        border-radius: 4px; 
+                        font-size: 22px;
+                    "
+                >
+                    Clique aqui!
+                </a>
+            </p>
+            
+            <p>
+                Caso não esteja conseguindo pelo link, copie a URL abaixo e cole no seu navegador.
+            </p>
+            <p>
+                <strong>{{ url }}</strong>
+            </p>
+            <p style='font-size: 15px;'>Um abraço,</p>
+            <p style='font-size: 15px;'>Victor Rangel.</p>
+        </div>
+    </center>
+</body>

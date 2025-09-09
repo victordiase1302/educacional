@@ -1,0 +1,49 @@
+{% load static %}
+<div class="categorie-section">
+  <div
+    class="title-bar"
+    style="border-bottom: 1px solid rgba(0, 0, 0, 0.125); padding: 0.5rem 1rem;"
+  >
+    <h5 class="dz-title">Panela Velha</h5>
+    {% comment %} <div class="swiper-defult-pagination pagination-dots style-1 p-0"></div> {% endcomment %}
+  </div>
+  <ul class="d-flex align-items-center">
+    {% for old in olds %}
+      {% if old.site_setup_id == site_setup.pk %}
+        <li
+          hx-post="{% url 'counters:service' %}"
+          hx-swap='none'
+          hx-vals='{"service": "Acessando Panela velha - {{old.name}}"}'
+        >
+          <a
+            href="{% url 'platforms:platform' old.slug %}"
+            class="btn"
+          >
+            <img
+              {% if old.logo %}
+                src="{{old.logo.url}}"
+              {% else %}
+                src="{% static 'development/images/place_holder.jpg' %}"
+              {% endif %}
+                alt="{{old.name}}"
+            >
+          </a>
+        </li>
+        {% if forloop.counter|divisibleby:"4" == "0" and not forloop.last %}
+          </ul>
+          <h1></h1>
+          <ul class="d-flex align-items-center">
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    {% if remaining_olds != 4 and remaining_olds != 0 %}
+        {% for _ in "x"|rjust:remaining_olds %}
+          {% include 'development/components/star_for_fav_platform.html' %}
+        {% endfor %}
+    {% elif remaining_olds == 0 and not olds %}
+      {% for _ in "x"|rjust:4 %}
+        {% include 'development/components/star_for_fav_platform.html' %}
+      {% endfor %}
+    {% endif %}
+  </ul>
+</div>

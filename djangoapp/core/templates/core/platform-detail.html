@@ -1,0 +1,177 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block no_register %}{% endblock no_register %}
+{% block content %}
+	{% include 'core/partials/header_title.html' %}
+<div class="watermark">
+	<div class="page-content bottom-content">
+		<div class="content-body">
+			<div class="container">
+				<div class="border-bottom">
+					<div class="d-flex justify-content-between align-items-center">
+						<div>
+							<span class="d-block mb-2">
+								<div class="flex-1">
+									<p>{{obj.family_name}}</p>
+								</div>
+							</span>
+							<h5 class="title">{{obj.name}}</h5>
+							<span
+								class="badge text-uppercase"
+								style="background: {{obj.status.cor_hex}};"
+							>
+								{{obj.status.name}}
+							</span>
+
+						</div>
+						<div class="ms-3">
+							<div class="media media-100">
+								{% if obj.logo %}
+									<img src="{{obj.logo.url}}" alt="{{obj.name}}">
+								{% else %}
+									<img src="{% static 'core/images/place_holder.jpg' %}" alt="{{obj.name}}">
+								{% endif %}
+							</div>
+						</div>
+					</div>
+					<div class="swiper-btn-center-lr">
+						<div class="swiper-container tag-group my-4 team-swiper-4">
+							<div class="swiper-wrapper">
+								{% for icone in obj.icons.all %}
+									{% if icone.is_active %}
+									<div class="swiper-slide">
+										<a href="#" class="tag-btn"  >
+											<img
+												{% if icone.icon %}
+													src="{{icone.icon.url}}"
+												{% else %}
+													src="{% static 'core/images/place_holder.jpg' %}"
+												{% endif %}
+												style="height: 20px;"
+												class=""
+												alt="{{icone.title}}"
+												data-toggle="tooltip"
+												data-placement="top"
+												title="{{icone.title}}"
+											>
+										</a>
+									</div>
+									{% endif %}
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="border-bottom">
+					{% if obj.min_deposit %}
+					<div class="d-flex align-items-center my-4">
+						<div class="icon-box text-primary">
+							<i class="fa-solid fa-dollar fa-2xl"></i>
+						</div>
+						<div class="ms-3">
+							<span class="d-block mb-2 light-text">Depósito Mínimo: </span>
+							<h6 class="mb-0">{{obj.min_deposit}}</h6>
+						</div>
+					</div>
+					{% endif %}
+					{% if obj.min_cash %}
+					<div class="d-flex align-items-center my-4">
+						<div class="icon-box text-primary">
+							<i class="fa-solid fa-coins fa-2xl"></i>
+						</div>
+						<div class="ms-3">
+							<span class="d-block mb-2 light-text">Saque Mínimo: </span>
+							<h6 class="mb-0">{{obj.min_cash}}</h6>
+						</div>
+					</div>
+					{% endif %}
+					{% if obj.bonus %}
+					<div class="d-flex align-items-center my-4">
+						<div class="icon-box text-primary">
+							<i class="fa-solid fa-hand-holding-dollar fa-2xl"></i>
+						</div>
+						<div class="ms-3">
+							<span class="d-block mb-2 light-text">Promoção de Bônus: </span>
+							<h6 class="mb-0">{{obj.bonus}}</h6>
+						</div>
+					</div>
+					{% endif %}
+				</div>
+
+				{% include 'core/components/banner300x250.html' %}
+
+					<div class="mt-4 mb-2">
+						<h5 class="mb-3">Descrição da Plataforma</h5>
+						<p class="para-title">
+							{{description|safe}}
+						</p>
+
+						{% include 'core/components/banner300x50.html' %}
+
+						<ul class="list-check">
+							{% for detail in obj.specific_detail.all %}
+								<li>{{detail}} </li>
+							{% endfor %}
+						</ul>
+					</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="footer fixed bg-white">
+		<div class="container">
+			<div
+				class="footer-btn d-flex align-items-center"
+				{% if obj.lucky_link %}
+					hx-post="{% url 'counters:service' %}"
+					hx-swap="none"
+					hx-vals='{"service": "Clicando no link do Daniel - {{obj.lucky_link}}"}'
+				{% endif %}
+			>
+				{% if obj.lucky_link %}
+					<a
+						href="{{obj.lucky_link}}"
+						target="_blank"
+						class="btn btn-primary btn-rounded flex-1 ms-2"
+					>
+						{{obj.name_link}}
+					</a>
+				{% else %}
+					<button
+						type="button"
+						class="btn btn-primary btn-rounded flex-1 ms-2 disabled"
+					>
+						{{obj.name_link}}
+					</button>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+{% if is_count %}
+	<div 
+		class='sendCountPlatform' 
+		hx-post="{% url 'core:count'%}" 
+		hx-vars='{"isPWA": isPWA, "isMobile": isMobile, "isIphone": isIphone, "referer": "{{referer}}"}'  
+		hx-trigger="load"
+	>
+	</div>
+{% endif %}
+{% endblock content %}
+{% block footer_no_register %}{% endblock footer_no_register %}
+
+{% block config_script %}
+	<script>
+		$(function () {
+			$('[data-toggle="popover"]').popover()
+		})
+		
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip()
+		})
+	</script>
+	{% if is_count %}
+		<script src="{% static 'core/js/installApp.js' %}" defer></script>		
+	{% endif %}
+{% endblock config_script %}

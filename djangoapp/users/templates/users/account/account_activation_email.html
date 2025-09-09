@@ -1,0 +1,13 @@
+{% block subject %}
+  Ativação de conta da plataforma Daniel Fortune
+{% endblock subject %}
+{% autoescape off %}
+Para iniciar o processo de ativação da sua conta {{ user.get_username }}, clique no link abaixo:
+
+{{ protocol }}://{{ domain }}{% url 'users:reset_password_confirm' uidb64=uid token=token %}
+
+Caso não consiga clicar no link acima, por favor copie e cole a URL no navegador.
+
+Atenciosamente,
+Daniel Fortune
+{% endautoescape %}

@@ -1,0 +1,39 @@
+{% load static %}
+<div class="filter-area">
+  <div class="col-12">
+    <h5>
+      {% if search_term %}
+        {{search_term}}
+      {% else %}
+        Todas as Plataformas
+      {% endif %}
+    </h5>
+    <div
+      class="title-bar"
+      style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);"
+    ></div>
+    <span>{{count}} Plataformas encontradas</span>
+  </div>
+</div>
+{% comment %} <div class="badge-area">
+  {% for icon in icons_list %}
+    {% include 'development/components/badge_list_platforms.html' %}
+  {% endfor %}
+</div> {% endcomment %}
+<div class="list item-list recent-jobs-list">
+  <ul>
+    {% for obj in obj_list %}
+      {% include 'development/partials/platform_item.html' %}
+      {% comment %}
+      {% if forloop.counter == 1 and forloop.last %}<div style='height: 38vh;'></div>{% endif %}
+      {% if forloop.counter == 2 and forloop.last %}<div style='height: 23vh;'></div>{% endif %}
+      {% if forloop.counter == 3 and forloop.last %}<div style='height: 17vh;'></div>{% endif %}
+       {% if forloop.counter|divisibleby:"2" %}
+        
+      {% endif %}
+      {% empty %}
+      <div style='height: 55vh;'></div>
+      {% endcomment %}
+    {% endfor %}
+  </ul>
+</div>

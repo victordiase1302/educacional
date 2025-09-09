@@ -1,0 +1,53 @@
+{% load static %}
+<div class="page-content">
+  <div class="content-inner pt-0">
+    <div class="container fb">
+
+      <div class="dashboard-area">
+        {% include 'core/partials/section_videos.html' %}
+
+        {% comment %}{% include 'core/components/banner300x50.html' %} {% endcomment %}
+        {% if favs %}
+          {% include 'core/partials/platforms_payer.html' %}
+        {% endif %}
+        {% include 'core/partials/section_fac.html' %}
+
+        {% comment %} {% include 'core/components/banner300x250.html' %} {% endcomment %}
+
+        {% include 'core/partials/platforms_fav.html' %}
+
+        {% include 'core/partials/platforms_old.html' %}
+
+        <div
+          class="title-bar"
+          style="border-bottom: 1px solid rgba(0, 0, 0, 0.125); padding: 0.5rem 1rem;"
+        >
+          <h5 class="dz-title">Plataformas Recentes</h5>
+          <div
+            hx-post="{% url 'counters:service' %}"
+            hx-swap='none'
+            hx-vals='{"service": "Acessando pesquisa de plataformas"}'
+          >
+            <a
+              class="btn btn-sm text-primary"
+              href="{% url 'platforms:platforms' %}"
+            >
+              Ver Todas
+            </a>
+          </div>
+        </div>
+        <div class="list item-list recent-jobs-list">
+          <ul>
+            {% for obj in obj_list %}
+              {% if obj.site_setup.pk == site_setup.pk %}
+                {% include 'core/partials/platform_item.html' %}
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

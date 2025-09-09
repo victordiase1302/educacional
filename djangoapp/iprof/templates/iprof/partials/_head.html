@@ -1,0 +1,25 @@
+{% load static %}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, minimal-ui, viewport-fit=cover">
+
+<meta name="author" content="Prof. Cláudia e Prof. Melina" />
+<meta name="keywords" content="inspirarprofessores, e-book, gratis" />
+<meta name="robots" content="index" />
+<meta name="description" content="InspirarProfessores - Prof. Cláudia e Prof. Melina"/>
+<meta property="og:title" content="InspirarProfessores - Prof. Cláudia e Prof. Melina" />
+<meta property="og:description" content="InspirarProfessores - Prof. Cláudia e Prof. Melina" />
+<meta property="og:image" content="social-image.png"/>
+<meta property="og:url" content="https://www.inspirarprofessores.com.br">
+<meta property="og:image" content="{% static 'iprof/img/inspLogo.png' %}"/>
+<title>InspirarProfessores</title>
+<meta name="format-detection" content="telephone=no">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700;900&display=swap" />
+<link rel="shortcut icon" type="image/x-icon" href="{% static 'iprof/img/inspLogo.png' %}" />
+
+<link rel="stylesheet" type="text/css" href="{% static 'ecr/vendor/bootstrap/bootstrap.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'ecr/vendor/bootstrap-icons/bootstrap-icons.min.css' %}">
+{% block link_tree %}{% endblock link_tree %}
+

@@ -1,0 +1,50 @@
+{% load replace_faq %}
+<div class="col-12">
+  <div class="card">
+      <div class="card-header d-block">
+          <h4 class="title">{{section.title}}</h4>
+          <p class="sub-title mb-0">{{section.sub_title}}</p>
+      </div>
+      <div class="card-body">
+          <div class="accordion accordion-no-gutter accordion-primary-solid" id="accordion-{{section.id}}">
+            {% for faq in section.get_faqs  %}
+              <div
+                class="accordion-item"
+                hx-post="{% url 'counters:service' %}"
+                hx-swap='none'
+                hx-indicator="false"
+                hx-vals='{"service": "Acessando FAQ - {{faq.title}}"}'
+              >
+                <div
+                  class="accordion-header collapsed"
+                  id="accord-{{faq.id}}"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapse-{{faq.id}}"
+                  aria-controls="collapse-{{faq.id}}"
+                  aria-expanded="false"
+                  role="button"
+                >
+                    <span class="accordion-header-icon">
+                        <i class="{{faq.icon_fontawesome}} me-2"></i>
+                    </span>
+                  <span class="accordion-header-text">{{faq.title}}</span>
+                  <span class="accordion-header-indicator"></span>
+                </div>
+                <div
+                  id="collapse-{{faq.id}}"
+                  class="accordion__body collapse"
+                  aria-labelledby="accord-{{faq.id}}"
+                  data-bs-parent="#accordion-{{section.id}}"
+                >
+                  <div class="accordion-body-text">
+                    <li class="pb-2">
+                      {{faq.description|paragraph_replace|safe}}
+                    </li>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+      </div>
+  </div>
+</div>

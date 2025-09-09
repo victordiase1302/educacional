@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-BR">
+<head>
+  {% include 'fortune/partials/_head.html' %}
+</head>
+<body>
+  <div class="page-wraper">
+    <div id="preloader">
+      <div class="spinner"></div>
+    </div>
+    {% include 'fortune/partials/header_company_detail.html' %}
+    {% include 'fortune/partials/sidebar.html' %}
+    {% include 'fortune/partials/content_company_detail.html' %}
+    {% include 'fortune/partials/theme_color.html' %}
+    <div class="footer fixed">
+      <div class="container">
+        <a href="{% url 'development:notification' %}" class="btn btn-primary text-start w-100 btn-rounded">21 Available Jobs
+          <svg class="ms-auto" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.74358 6L4.33333 1.66667L6 -2.54422e-07L12 6L6 12L4.33335 10.3333L8.74358 6Z" fill="white"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  {% include 'fortune/partials/_js_footer.html' %}
+</body>
+</html>

@@ -1,0 +1,91 @@
+{% extends 'development/base.html' %}
+{% load static %}
+{% block no_register %}{% endblock no_register %}
+{% block content %}
+{% include 'development/partials/header_title.html' %}
+<div class="page-content">
+  <div class="container">
+    <div class="serach-area" id='search-for-input'>
+      <form class="m-b30">
+        <div class="input-group">
+          <span class="input-group-text">
+            <a href="#" class="search-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M20.5605 18.4395L16.7528 14.6318C17.5395 13.446 18 12.0262 18 10.5C18 6.3645 14.6355 3 10.5 3C6.3645 3 3 6.3645 3 10.5C3 14.6355 6.3645 18 10.5 18C12.0262 18 13.446 17.5395 14.6318 16.7528L18.4395 20.5605C19.0245 21.1462 19.9755 21.1462 20.5605 20.5605C21.1462 19.9748 21.1462 19.0252 20.5605 18.4395ZM5.25 10.5C5.25 7.605 7.605 5.25 10.5 5.25C13.395 5.25 15.75 7.605 15.75 10.5C15.75 13.395 13.395 15.75 10.5 15.75C7.605 15.75 5.25 13.395 5.25 10.5Z"
+                  fill="#B9B9B9" />
+              </svg>
+            </a>
+          </span>
+          <input
+            type="text"
+            placeholder="Procure uma plataforma..."
+            class="form-control ps-0 bs-0"
+            name='q'
+            hx-target="#search-for-input"
+            hx-trigger="keyup changed delay:500ms, click[enterKey]"
+            hx-get="{% url 'platforms:search-platform' %}"
+            hx-indicator="#preloader"
+            hx-swap="innerHTML"
+          >
+        </div>
+      </form>
+      <div class="badge-area">
+        {% for icon in icons_list %}
+          {% include 'development/components/badge_list_platforms.html' %}
+        {% endfor %}
+      </div>
+      {% include 'development/components/banner300x250.html' %}
+      <div class='search-main' id="search-platforms">
+        <div class="filter-area">
+          <div class="col-12">
+            <h5>Todas as Plataformas </h5>
+            <div
+              class="title-bar"
+              style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);"
+            ></div>
+            <p>Encontrei {{count_platforms}} Plataforma{{count_platforms|pluralize:'s'}} analisada{{count_platforms|pluralize:'s'}} até agora.</p>
+            {% comment %} <p>Pesquise acima pela plataforma desejada ou clique na categoria desejada.</p> {% endcomment %}
+
+            <div style="height:55vh;">
+              <img
+                class='mt-5'
+                src="{% static 'development/images/icons/detective.png' %}"
+                style="display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 97%);"
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      {% comment %} <div class="badge-area">
+        <a href="#">
+          <span class="btn tag-btn">
+            <img
+              src="{% static 'development/images/icons/high-voltage.png' %}"
+              alt="Rapidinha"
+              class="remove-tag cross"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Rapidinha"
+              width="20"
+              height="20"
+            />
+            <div style="margin-left: 5px;">Rapidinha</div>
+          </span>
+        </a>
+      </div> {% endcomment %}
+      {% comment %} <div style="display: flex; justify-content: center;">
+        <img
+          src="{% static 'development/images/ad-1.png' %}"
+          class="m-b20"
+          alt="Images"
+          style="width: 300px; height: 50px;"
+        >
+      </div> {% endcomment %}
+    </div>
+  </div>
+</div>
+{% endblock content %}
+{% block msg_install %}{% endblock msg_install %}
+
+

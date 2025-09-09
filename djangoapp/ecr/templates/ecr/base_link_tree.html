@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-BR" data-bs-theme="dark">
+  <head>
+    {% include 'ecr/partials/_head.html' %} {% block link_tree %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'ecr/css/styles_link_tree.css' %}"
+    />
+    {% endblock link_tree %}
+  </head>
+
+  <body class="bck-link-tree" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+    <div class="content">
+      <div class="profile">
+        <img src="{% static "ecr/img/pic-victor.png" %}" alt="Victor Rangel"
+        width="260" />
+        <h1>@econometriafacil</h1>
+        <p>Victor Rangel</p>
+      </div>
+      <div class="row justify-content-center form-cta">
+        <div class="d-grid col-12 gap-2">
+          <p style="text-align: justify; margin-top: 7px; text-indent: 1.5em">
+            Econometria é muito mais que somente lidar com números frios e
+            gráficos, é sobre entender a sociedade e contar histórias.
+          </p>
+          <p style="text-align: justify; text-indent: 1.5em">
+            Quer aprender a interpretar esses números e conhecer essas
+            histórias?
+          </p>
+          <p style="text-align: center; text-indent: 1.5em">
+            <strong
+              >Segue as minhas redes sociais que eu te mostro como!</strong
+            >
+          </p>
+        </div>
+        <div class="d-grid col-md-6 col-sm-12">
+          <a
+            href="https://www.instagram.com/econometriafacil/"
+            target="_blank"
+            class="btn btn-outline-light btn-lg bta-cta mb-3"
+          >
+            <i class="bi bi-instagram"></i>
+            Instagram
+          </a>
+          <a
+            href="https://www.youtube.com/@econometriafacil"
+            target="_blank"
+            class="btn btn-outline-light btn-lg bta-cta mb-3"
+          >
+            <i class="bi bi-youtube"></i>
+            YouTube
+          </a>
+          {% comment %} <a
+            href="https://www.youtube.com/@econometriafacil"
+            target="_blank"
+            class="btn btn-outline-light btn-lg bta-cta"
+          >
+            <i class="bi bi-book"></i>
+            Baixe o  e-book aqui
+          </a> {% endcomment %}
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p>Todos os direitos reservados</p>
+      <p>
+        <img src="{% static "ecr/img/ecf-logo.png" %}" alt="Victor Rangel"
+        width="24" /> EconometriaFácil
+      </p>
+    </footer>
+    {% include 'ecr/partials/_footer.html' %} {% block extra_js %}
+    {% comment %} <script>
+      window.embeddedChatbotConfig = {
+        chatbotId: "sQOj82H8A19NDn9XkRs0K",
+        domain: "www.chatbase.co",
+      };
+    </script>
+    <script
+      src="https://www.chatbase.co/embed.min.js"
+      chatbotId="sQOj82H8A19NDn9XkRs0K"
+      domain="www.chatbase.co"
+      defer
+    ></script> {% endcomment %}
+    {% endblock extra_js %}
+  </body>
+</html>

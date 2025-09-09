@@ -1,0 +1,35 @@
+{% load static %}
+<div id="main-content">
+  <main class="container">
+    <div class="mobile-layout-container d-lg-none d-flex">
+      <div class="image-container">
+        <img
+          src="{% static 'ecr/img/victor-cta-2.png' %}"
+          alt="Imagem promocional"
+          class="responsive-image"
+        />
+      </div>
+      <div class="text-container">
+        <h2 class="equal-spacing">
+          Econometria <span class="highlight">Fácil</span>
+        </h2>
+      </div>
+    </div>
+    <div
+      class="p-4 p-md-5 mb-4 rounded text-body-emphasis overflow-hidden d-flex cta-main"
+    >
+      <div class="col-lg-9 col-md-12 col-sm-12 px-0">
+        <h1 class="display-4 fst-bold cta-title">
+          Obrigado por se inscrever no E-book Econometria Fácil
+        </h1>
+        <p class="lead my-4">
+          Breve estaremos entrando em contato com você para enviar o e-book.
+        </p>
+      </div>
+      <div class="cta-desktop-image col-lg-3 px-0 d-none d-lg-block">
+        <img src="{% static 'ecr/img/victor.png' %}" class="responsive-image" />
+      </div>
+    </div>
+  </main>
+  {% block footer %}{% endblock footer %}
+</div>

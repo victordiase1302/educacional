@@ -1,0 +1,111 @@
+version: '3.9'
+services:
+  drj:
+    container_name: drj
+    restart: always
+    env_file: ./djangoapp/.env
+    build:
+      context: .
+      dockerfile: ./docker/prod/Dockerfile
+    volumes:
+      - ./djangoapp:/djangoapp
+      - ./data/web/static:/data/web/static/
+      - ./data/web/media:/data/web/media/
+    depends_on:
+      redis:
+        condition: service_started
+    networks:
+      - web_network
+
+  telbot:
+    container_name: telbot
+    restart: always
+    env_file: ./djangoapp/.env
+    build:
+      context: .
+      dockerfile: ./docker/prod/Dockerfile_Bot
+    ports:
+      - "8005:8005"
+    volumes:
+      - ./djangoapp/telegram_bot:/telbot
+    networks:
+      - web_network
+
+  # drj_asgi:
+  #   container_name: drj_asgi
+  #   restart: always
+  #   env_file: ./djangoapp/.env
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker/prod/Dockerfile
+  #   command: daphne -b 0.0.0.0 -p 8001 project.asgi:application
+  #   volumes:
+  #     - ./djangoapp:/djangoapp
+  #   depends_on:
+  #     redis:
+  #       condition: service_started
+  #     drj_web:
+  #       condition: service_started
+  #   networks:
+  #     - web_network
+
+  # drj_db:
+  #   image: postgres:14.5-alpine
+  #   container_name: drj_db
+  #   restart: always
+  #   volumes:
+  #     - ./data/postgres/data:/var/lib/postgresql/data/
+  #   env_file:
+  #     - ./djangoapp/.env
+  #   ports:
+  #     - "5432:5432"
+  #   networks:
+  #     - web_network
+  #   healthcheck:
+  #     test: "pg_isready -U postgres"
+  #     interval: 5s
+
+  celery:
+    container_name: celery
+    restart: always
+    build:
+      context: .
+      dockerfile: ./docker/prod/Dockerfile
+    command: /scripts/start-celeryworker.sh
+    volumes:
+      - ./djangoapp:/djangoapp
+      - ./data/web/static:/data/web/static/
+      - ./data/web/media:/data/web/media/
+    env_file:
+      - ./djangoapp/.env
+    depends_on:
+      - redis
+      - drj
+    networks:
+      - web_network
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    restart: always
+    networks:
+      - web_network
+
+  nginx:
+    container_name: nginx
+    restart: always
+    image: "nginx:latest"
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./data/web/static:/data/web/static/
+      - ./data/web/media:/data/web/media/
+    networks:
+      - web_network
+    depends_on:
+      - drj
+
+networks:
+  web_network:
+    driver: bridge

@@ -1,0 +1,4 @@
+/* Ajusta a largura dos campos CharField */
+.vTextField {
+    width: 800px !important;
+}

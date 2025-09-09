@@ -1,0 +1,95 @@
+{% load static %}
+<div id="main">
+  <div class="page-content">
+    <!-- Banner -->
+    <div class="banner-wrapper shape-1">
+      {% include 'development/partials/header_welcome.html' %}
+      <div class="container inner-wrapper">
+        <h2 class="dz-title">Entrar</h2>
+        <p class="mb-0">Acesse a área VIP do Portal</p>
+      </div>
+    </div>
+
+    <div class="container">
+      {% include 'development/components/toast.html' %}
+      <div class="account-area">
+        <form id='form-login'>
+          <div class="input-group">
+            <input type="text" placeholder="Email" class="form-control" />
+          </div>
+          <div class="input-group">
+            <input
+              type="password"
+              placeholder="Senha"
+              id="dz-password"
+              class="form-control be-0"
+            />
+            <span class="input-group-text show-pass">
+              <i class="fa fa-eye-slash"></i>
+              <i class="fa fa-eye"></i>
+            </span>
+          </div>
+          <div class="input-group">
+            <button
+                type="submit"
+                class="btn mt-2 btn-primary w-100 btn-rounded"
+                hx-post="{% url 'core:index' %}"
+                hx-swap='outerHTML'
+                hx-target='#form-login'
+                hx-indicator="#preloader"
+              >
+                ENTRAR
+              </button>
+          </div>
+          <a
+              href="#"
+              class="btn-link d-block text-center"
+              href="#"
+              hx-get="{% url 'users:forgot-password'%}"
+              hx-swap='outerHTML'
+              hx-target='#main'
+              hx-indicator="#preloader"
+            >
+              Esqueceu a senha?
+            </a>
+        </form>
+        <div class="text-center p-tb10">
+          <span class="saprate">Ou acesse sem usuário</span>
+        </div>
+        <div class="social-btn-group text-center">
+          <a href="index.html" class="social-btn"
+            ><img
+              src="{% static 'development/images/emoji/emoji-2.png' %}"
+              alt="socila-image"
+          /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer fixed">
+    <div class="container">
+      <a
+        href="#"
+        hx-get="{% url 'users:register'%}"
+        hx-swap="outerHTML"
+        hx-target="#main"
+        hx-indicator="#preloader"
+        class="btn btn-primary light btn-rounded text-primary d-block"
+      >
+        Crie sua conta
+      </a>
+    </div>
+  </footer>
+</div>
+<script>
+	$(function(){
+		$('.show-pass').on('click',function(){
+			$(this).toggleClass('active');
+			if($('#dz-password').attr('type') == 'password'){
+				$('#dz-password').attr('type','text');
+			}else if($('#dz-password').attr('type') == 'text'){
+				$('#dz-password').attr('type','password');
+			}
+	  })
+  })
+</script>

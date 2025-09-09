@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-BR">
+<head>
+  {% include 'development/partials/_head.html' %}
+	{% block extra_css %}{% endblock extra_css %}
+</head>
+<body
+	hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+>
+<div class="page-wraper">
+	<div id="preloader">
+		<div class="spinner"></div>
+	</div>
+	<div
+		id="notification-dropdown"
+		class="notification-dropdown"
+		data-site-setup-id="{{ site_setup.id }}"
+	></div>
+	<div
+		id="notificationDiv"
+		class="notification-dropdown"
+		hx-get="/notificacoes/nao-lidas/"
+		hx-trigger="load"
+		hx-swap="outerHTML"
+	>
+	</div>
+	{% block no_register %}
+		{% include 'development/partials/header.html' %}
+		{% include 'development/partials/sidebar.html' %}
+		{% include 'development/partials/banner.html' %}
+	{% endblock no_register %}
+
+  	{% block content %}  {% endblock content %}
+	{% block footer_no_register %}
+		{% include 'development/partials/menu_bar.html' %}
+		{% include 'development/partials/theme_color.html' %}
+	{% endblock footer_no_register %}
+	{% block msg_install %}
+		{% include 'development/components/msg_install_ios.html' %}
+		{% include 'development/components/msg_install_android.html' %}
+		<div class="offcanvas-backdrop pwa-backdrop"></div>
+	{% endblock msg_install %}
+
+</div>
+{% block main_script %}
+	{% include 'development/partials/_js_footer.html' %}
+{% endblock main_script %}
+{% block script_end %}
+	<script src="{% static 'development/js/installApp.js' %}"></script>
+{% endblock script_end %}
+	<script>
+		document.body.addEventListener('copy', function (e) {
+			e.preventDefault();
+		});
+		document.addEventListener("htmx:afterSwap", function (event) {
+			const unreadElement = document.getElementById("unread-data");
+			if (unreadElement) {
+				const unreadIds = JSON.parse(unreadElement.dataset.unreadIds);
+				let existingIds = localStorage.getItem('notificationsRead');
+				if (existingIds === null) {
+					existingIds = [];
+				} else {
+					existingIds = JSON.parse(existingIds);
+				}
+				const allIds = [...new Set([...existingIds, ...unreadIds])];
+				localStorage.setItem('notificationsRead', JSON.stringify(allIds));
+			}
+		  });
+		document.addEventListener('htmx:configRequest', function (event) {
+			if (event.target.id === 'notificationDiv') {
+				let notificacoesLidas = localStorage.getItem('notificationsRead');
+				const idsLidas = localStorage.getItem('notificationsRead');
+				event.detail.parameters = event.detail.parameters || {};
+				event.detail.parameters.ids_lidas = idsLidas;
+				const dataSiteSetup = document.getElementById("notification-dropdown");
+				const dataSiteSetupValue = dataSiteSetup ? dataSiteSetup.dataset.siteSetupId : null;
+				event.detail.parameters.site_setup = dataSiteSetupValue;
+			}
+		});
+		document.addEventListener("htmx:wsBeforeMessage", (event) => {
+			const rawData = event.detail.message;
+			const parser = new DOMParser();
+			const doc = parser.parseFromString(rawData, 'text/html');
+			const siteSetupElement = doc.querySelector('input[name="id-site-setup"]');
+			const inputValue = siteSetupElement ? siteSetupElement.value : null;
+
+			const dataSiteSetup = document.getElementById("notification-dropdown");
+			const dataSiteSetupValue = dataSiteSetup ? dataSiteSetup.dataset.siteSetupId : null;
+
+			if (inputValue !== dataSiteSetupValue){
+				return event.preventDefault();
+			}
+			const inputElement = doc.querySelector('input[name="id-notification"]');
+			if (inputElement) {
+				const idDaNotificacao = inputElement.value;
+				let lidas = JSON.parse(localStorage.getItem('notificationsRead')) || [];
+				if (!lidas.includes(idDaNotificacao)) {
+					lidas.push(idDaNotificacao);
+					localStorage.setItem('notificationsRead', JSON.stringify(lidas));
+				}
+			}
+		});
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+<div id="unread-data" data-unread-ids="{{ unread_ids|safe }}"></div>
+{% for obj in obj_list %}
+    {% include "development/components/re_notification.html" %}
+{% endfor %}

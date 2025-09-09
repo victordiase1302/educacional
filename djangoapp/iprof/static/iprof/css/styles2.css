@@ -1,0 +1,500 @@
+/* ================================
+   Reset e Variáveis Globais
+================================== */
+:root {
+  --primary-color: #0b354c;
+  --secondary-color: #ffae00;
+  --accent-color: #d18f00;
+  --white: #ffffff;
+  --text-color: #0b354c;
+  --gradient-secondary: linear-gradient(90deg, rgba(255,174,0,1) 0%, rgba(219,150,0,1) 100%);
+  --font-primary: 'Poppins', Helvetica, sans-serif;
+  --font-secondary: 'Montserrat', Helvetica, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 80%; /* 1rem = 10px */
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--white);
+}
+
+/* ================================
+   Utilitários e Acessibilidade
+================================== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  flex: 1;
+}
+
+/* ============================
+   Containers Principais
+============================== */
+.page-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.content-wrapper {
+  width: 100%;
+  max-width: 1920px;
+  overflow: hidden;
+  position: relative;
+  
+}
+
+/* ============================
+   Hero Section
+============================== */
+.hero-section {
+  /* Ajuste de caminho: imagens em iprof/img/ */
+  background: url('../img/heropc.jpg') center/cover no-repeat;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1280px;
+  align-items: center;
+}
+
+.hero-text {
+  max-width: 53rem;
+  width: 100%;
+  text-align: center;
+}
+
+.logo {
+  height: 6.9rem;
+  margin-bottom: 2rem;
+  object-fit: contain;
+}
+
+.hero-copy {
+  margin-bottom: 2.5rem;
+}
+
+.hero-title {
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  color: var(--white);
+  margin-bottom: 2rem;
+}
+
+.hero-description {
+  font-weight: 400;
+  font-size: 1.375rem;
+  line-height: 1.8;
+  color: var(--white);
+}
+
+/* Formulário */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.form-group {
+  width: 100%;
+}
+
+.form-input {
+  width: 100%;
+  height: 3.2rem;
+  padding: 0 1rem;
+  font-size: 1.25rem;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: 1px solid #000;
+  border-radius: 0.5rem;
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .form-row {
+    flex-direction: row;
+  }
+}
+
+/* Botão CTA */
+.cta-button {
+  width: 100%;
+  height: 5rem;
+  background: var(--gradient-secondary);
+  border: none;
+  border-radius: 0.5rem;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--white);
+  cursor: pointer;
+  transition: transform 0.2s ease, outline-offset 0.2s;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+}
+
+.cta-button:focus {
+  outline: 3px dashed var(--secondary-color);
+  outline-offset: 4px;
+}
+
+/* Placeholder de mídia */
+.hero-media {
+  width: 100%;
+  max-width: 57.7rem;
+  height: 53.6rem;
+  background-color: #f00;
+  margin-top: 2rem;
+}
+
+/* ============================
+   Features Section
+============================== */
+.features-section {
+  /* Caminho relativo ao arquivo CSS */
+  background: url('../img/rectangle-10.png') center/cover no-repeat;
+  padding: 4rem 2rem;
+}
+
+.features-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.section-icon {
+  position: absolute;
+  top: -4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6.1rem;
+  height: 6.1rem;
+  background-color: var(--secondary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-image {
+  width: 3.6rem;
+  height: 2.2rem;
+  object-fit: contain;
+}
+
+.section-title {
+  font-weight: 700;
+  font-size: 3rem;
+
+}
+
+.title-yellow {
+  color: var(--secondary-color);
+}
+
+.features-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+}
+
+/* Cards de benefício */
+.feature-card {
+  background-color: var(--primary-color);
+  border: 0.3rem dashed #296886;
+  border-radius: 35px;
+  overflow: hidden; /* garante que a imagem preencha e respeite o raio */
+}
+
+.feature-card-2 {
+  background-color: #0594AB;
+  border: 0.3rem dashed #296886;
+  border-radius: 35px;
+  overflow: hidden; /* garante que a imagem preencha e respeite o raio */
+}
+
+/* Faz a imagem do card preencher toda a largura do card */
+.card-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 2.5rem;
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.card-icon {
+  width: 4.8rem;
+  height: 4.6rem;
+  margin-right: 1rem;
+  object-fit: contain;
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--white);
+}
+
+.card-description {
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  color: var(--white);
+}
+
+/* ============================
+   About Section
+============================== */
+.about-section {
+  /* Caminho relativo ao arquivo CSS */
+  background: url('../img/BG.jpg') center/cover no-repeat;
+  padding: 4rem 2rem;
+}
+
+.about-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.about-text {
+  max-width: 46.6rem;
+  width: 100%;
+}
+
+.about-title {
+  font-weight: 700;
+  font-size: 3rem;
+  color: var(--white);
+  margin-bottom: 2rem;
+}
+
+.about-description {
+  font-family: var(--font-secondary);
+  font-weight: 500;
+  font-size: 1.375rem;
+  line-height: 1.7;
+  color: var(--white);
+  text-align: left;
+}
+
+.about-description {
+  font-size: 12px;
+}
+
+.about-img {
+  width: 100%;
+  max-width: 57.7rem;
+}
+
+.about-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================
+   Responsividade
+============================== */
+@media (min-width: 768px) {
+  /* Hero Section agora com mais espaço em cima e embaixo */
+  .hero-section {
+    padding: 10rem 3rem;
+  }
+
+  /* mantém o padding das outras seções */
+  .features-section,
+  .about-section {
+    padding: 6rem 3rem;
+  }
+/* … resto das regras continua igual … */
+}
+  /* Desktop/tablet: parágrafos da descrição Quem Somos em 16px */
+  .about-description p {
+    font-size: 16px;
+  }
+
+@media (min-width: 768px) {
+  .hero-content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .hero-text {
+    text-align: left;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+
+@media (min-width: 1024px) {
+  .hero-section,
+  .features-section,
+  .about-section {
+    padding: 8rem 4rem;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .hero-title {
+    font-size: 3rem;
+  }
+
+  .hero-description {
+    font-size: 1.5rem;
+  }
+
+  .about-title {
+    font-size: 3.5rem;
+  }
+
+  .about-description {
+    font-size: 1.5rem;
+  }
+}
+
+/* ================================
+   Mobile (<=767px)
+================================== */
+@media (max-width: 767px) {
+  .hero-section {
+    padding-bottom: 400px; /* ajuste conforme necessidade */
+    /* Caminho relativo ao arquivo CSS */
+    background: url('../img/heromobile.jpg') bottom center/cover no-repeat;
+  }
+
+  /* 1 card por linha */
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  .about-text {
+    max-width: 100%;
+    width: 100%;
+    text-align: left;
+  }
+  .about-title {
+    text-align: left;
+  }
+  .about-description {
+    text-align: left;
+    font-size: 18px;
+  }
+  .about-img {
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .about-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Tipografia mobile: títulos 22px, textos 18px */
+  .hero-title,
+  .section-title,
+  .card-title,
+  .about-title {
+    font-size: 22px;
+  }
+
+  .hero-description,
+  .card-description,
+  .p,
+  .about-description {
+    font-size: 16px;
+  }
+
+  /* Ajusta campos de formulário para 18px no mobile */
+  .form-input {
+    font-size: 18px;
+  }
+}

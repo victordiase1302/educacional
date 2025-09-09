@@ -1,0 +1,25 @@
+{% load static %}
+
+  <span
+    class="btn tag-btn"
+    hx-get="{% url 'platforms:search-for-term' %}"
+    hx-vals='{"search_term":"{{icon.name}}"}'
+    hx-indicator="#preloader"
+    hx-target="#search-platforms"
+  >
+    <img
+      {% if icon.icon %}
+        src="{{icon.icon.url}}"
+      {% else %}
+        src="{% static 'core/images/place_holder.jpg' %}"
+      {% endif %}
+      alt="{{icon.name}}"
+      class="remove-tag cross-2"
+      data-toggle="tooltip"
+      data-placement="top"
+      title="{{icon.name}}"
+      width="20"
+      height="20"
+    />
+    <div style="margin-left: 5px;">{{icon.name}}</div>
+  </span>

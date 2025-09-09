@@ -1,0 +1,38 @@
+{% load static %}
+<li
+  class="{% if forloop.last %}mb-5{% endif %}"
+>
+  <div
+    class="item-content watermark-card"
+    role='button'
+    hx-post="{% url 'counters:service' %}"
+    hx-swap='none'
+    hx-vals='{"service": "Acessando Post - {{obj.title}}"}'
+    hx-on:click="window.location.href='{{obj.get_detail_url}}'"
+  >
+    <a
+      href="{{obj.get_detail_url}}"
+      class="item-media"
+    >
+      <div class="media media-70">
+        <img
+          {% if obj.thumbnail %}
+            src="{{obj.thumbnail.url}}"
+          {% else %}
+            src="{% static 'core/images/place_holder.jpg' %}"
+          {% endif %}
+          alt="{{obj.title}}"
+        >
+      </div>
+    </a>
+    <div class="item-inner">
+      <div class="item-title-row">
+        <h6 class="item-title text-uppercase">
+        <a href="{{obj.get_detail_url}}">{{obj.title}}</a>
+        </h6>
+        <div class="item-subtitle">{{obj.sub_title|default:"&nbsp;&nbsp;"}}</div>        
+      </div>      
+    </div>
+  </div>
+  <div class="sortable-handler"></div>
+</li>

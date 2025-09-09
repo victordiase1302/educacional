@@ -1,0 +1,33 @@
+{% load static %}
+<div
+		class="offcanvas offcanvas-bottom pwa-offcanvas"
+		id="showAlertPWA"
+		style="display: none;"
+	>
+		<div class="container">
+			<div class="offcanvas-body small">
+				<img class="logo" src="{% static 'images/fav-emoji.png' %}" alt=""/>
+				<h5 class="title">Daniel Fortune</h5>
+				<p class="pwa-text">Instale o aplicativo Daniel Fortune no seu celular para fácil acesso</p>
+				<a
+					href="#"
+					hx-post="{% url 'counters:service' %}"
+					hx-swap='none'
+					hx-vals='{"service": "Instalando o APP"}'
+					id="install-pwa"
+					class="btn btn-sm btn-secondary pwa-btn"
+				>
+					Instalar APP
+				</a>
+				<a
+					href="#"
+					hx-post="{% url 'counters:service' %}"
+					hx-swap='none'
+					hx-vals='{"service": "Recusou a instalação do APP"}'
+					class="btn btn-sm pwa-close light btn-danger ms-2"
+				>
+					Talvez depois
+				</a>
+			</div>
+		</div>
+	</div>
