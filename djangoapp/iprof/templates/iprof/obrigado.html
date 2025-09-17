@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Atividades Inclusivas – Landing Page</title>
+    <meta
+      name="description"
+      content="Landing page de Atividades Inclusivas com formulário, benefícios e apresentação da equipe."
+    />
+    <link rel="stylesheet" href="{% static 'iprof/css/obrigado.css' %}" />
+  </head>
+
+  <body>
+
+    <main class="container">
+        <!-- Seção do Logo -->
+        <img
+                class="logo"
+                src="{% static 'iprof/img/Logo.png' %}"
+                alt="Logotipo do projeto Atividades Inclusivas"
+                loading="lazy"
+                decoding="async"
+              />
+
+        <!-- Título Principal -->
+        <h1>Parabéns, professor(a)!</h1>
+
+        <!-- Mensagem de Confirmação -->
+        <p class="main-text">
+            O guia já está no seu e-mail e vai trazer<br>
+            propostas práticas para você aplicar ainda hoje!
+        </p>
+
+        <!-- Mensagem de Boas-vindas -->
+        <p class="secondary-text">
+            Obrigada por integrar essa comunidade que sonha<br>
+            e realiza uma educação infantil mais inclusiva.<br>
+            Bem-vindo(a)!
+        </p>
+
+        <!-- Assinatura -->
+        <p class="signature">
+            - Profas. Melina & Cláudia
+        </p>
+    </main>
+
+</body>

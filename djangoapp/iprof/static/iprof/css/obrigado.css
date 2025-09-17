@@ -1,0 +1,135 @@
+        /* Estilos Gerais e Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+            background-image: url('../img/HERO2 PC-1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        /* Container Principal */
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        /* Logo */
+        .logo {
+            height: 6.9rem;
+            margin-bottom: 2rem;
+            object-fit: contain;
+          }
+
+        .logo-icon {
+            /* Simulação do ícone com CSS para não depender de uma imagem externa */
+            display: inline-block;
+            position: relative;
+            width: 48px;
+            height: 48px;
+            margin-bottom: 5px;
+        }
+
+        .logo-icon::before,
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #FFDE59;
+            /* Um polígono que se assemelha a uma estrela/flor */
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+
+        .logo-icon::after {
+            /* Um segundo polígono rotacionado para completar a forma */
+            transform: rotate(180deg);
+            opacity: 0.6;
+        }
+
+        .logo .brand-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff;
+            display: block;
+        }
+
+        .logo .subtitle {
+            font-size: 16px;
+            color: #ffffff;
+            display: block;
+            letter-spacing: 0.5px;
+        }
+
+        /* Títulos e Parágrafos */
+        h1 {
+            font-size: 2.5rem; /* 40px */
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .main-text {
+            font-size: 1.25rem; /* 20px */
+            line-height: 1.6;
+            margin-bottom: 40px;
+            color: #f0f0f0;
+        }
+
+        .secondary-text, .signature {
+            font-size: 1.125rem; /* 18px */
+            line-height: 1.7;
+            color: #ffffff;
+        }
+        
+        .signature {
+            margin-top: 30px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem; /* 32px */
+            }
+
+            .main-text {
+                font-size: 1.125rem; /* 18px */
+            }
+
+            .secondary-text, .signature {
+                font-size: 1rem; /* 16px */
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.8rem; /* ~29px */
+            }
+
+            .main-text {
+                font-size: 1rem; /* 16px */
+            }
+
+            .secondary-text, .signature {
+                font-size: 0.9rem; /* ~14px */
+            }
+        }
